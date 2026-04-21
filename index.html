@@ -14,6 +14,7 @@
         .section { background: #fff; border-radius: 16px; padding: 32px; margin-bottom: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
         h2 { font-size: 1.5em; font-weight: 600; margin-bottom: 16px; color: #1d1d1f; }
         h3 { font-size: 1.15em; font-weight: 600; margin: 20px 0 8px; color: #1d1d1f; }
+        h4 { font-size: 1em; font-weight: 600; margin: 16px 0 8px; color: #424245; }
         p { margin-bottom: 12px; color: #424245; }
         ul, ol { margin: 12px 0; padding-left: 24px; }
         li { margin-bottom: 8px; color: #424245; }
@@ -25,15 +26,194 @@
         .faq-item:last-child { border-bottom: none; }
         .faq-question { font-weight: 600; color: #1d1d1f; margin-bottom: 8px; }
         .faq-answer { color: #424245; }
+        .step { background: #f5f5f7; border-radius: 12px; padding: 16px; margin: 12px 0; }
+        .step-number { display: inline-block; width: 28px; height: 28px; background: #007AFF; color: white; border-radius: 50%; text-align: center; line-height: 28px; font-weight: 600; margin-right: 12px; }
+        .step-title { font-weight: 600; color: #1d1d1f; }
+        .code-block { background: #1d1d1f; color: #f5f5f7; padding: 16px; border-radius: 8px; font-family: 'SF Mono', Monaco, monospace; font-size: 0.9em; overflow-x: auto; margin: 12px 0; }
+        .highlight { background: #007AFF; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.9em; }
+        .warning { background: #FFF3CD; border-left: 4px solid #FFC107; padding: 16px; border-radius: 8px; margin: 12px 0; }
+        .warning-title { font-weight: 600; color: #856404; margin-bottom: 8px; }
+        .info { background: #E3F2FD; border-left: 4px solid #2196F3; padding: 16px; border-radius: 8px; margin: 12px 0; }
+        .info-title { font-weight: 600; color: #1565C0; margin-bottom: 8px; }
+        .nav-tabs { display: flex; gap: 8px; margin-bottom: 24px; flex-wrap: wrap; }
+        .nav-tab { padding: 12px 24px; background: #fff; border: 2px solid #e5e5ea; border-radius: 8px; cursor: pointer; font-weight: 500; transition: all 0.2s; }
+        .nav-tab:hover { border-color: #007AFF; }
+        .nav-tab.active { background: #007AFF; color: white; border-color: #007AFF; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
         footer { text-align: center; margin-top: 40px; padding: 20px; color: #86868b; font-size: 0.9em; }
+        @media (max-width: 600px) {
+            .container { padding: 20px 16px; }
+            .section { padding: 20px; }
+            h1 { font-size: 2em; }
+            .nav-tabs { flex-direction: column; }
+            .nav-tab { text-align: center; }
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
             <h1>QuickPing</h1>
-            <p class="subtitle">Technical Support</p>
+            <p class="subtitle">Technical Support & Setup Guide</p>
         </header>
+
+        <div class="section">
+            <h2>SMS & Email Setup Guide</h2>
+            <p>QuickPing supports sending reminders via SMS and Email. Follow the guides below to configure these services.</p>
+            
+            <div class="nav-tabs">
+                <div class="nav-tab active" onclick="showTab('twilio')">SMS (Twilio)</div>
+                <div class="nav-tab" onclick="showTab('sendgrid')">Email (SendGrid)</div>
+            </div>
+
+            <div id="twilio" class="tab-content active">
+                <h3>SMS Setup with Twilio</h3>
+                <p>Twilio is a cloud communications platform that allows you to send SMS messages programmatically. Here's how to set it up:</p>
+
+                <h4>Step 1: Create a Twilio Account</h4>
+                <div class="step">
+                    <span class="step-number">1</span>
+                    <span class="step-title">Go to <a href="https://www.twilio.com/try-twilio" target="_blank">twilio.com/try-twilio</a></span>
+                </div>
+                <ul>
+                    <li>Click "Start your free trial"</li>
+                    <li>Enter your email, password, and verify your phone number</li>
+                    <li>Twilio offers a <strong>free trial with $15.50 credit</strong> - enough for testing</li>
+                </ul>
+
+                <h4>Step 2: Get Your Account SID and Auth Token</h4>
+                <div class="step">
+                    <span class="step-number">2</span>
+                    <span class="step-title">Navigate to the Twilio Console Dashboard</span>
+                </div>
+                <p>After logging in, you'll see your credentials on the main dashboard:</p>
+                <ul>
+                    <li><strong>Account SID</strong> - Starts with "AC..." (e.g., AC1234567890abcdef...)</li>
+                    <li><strong>Auth Token</strong> - Click "Show" to reveal (keep this secret!)</li>
+                </ul>
+                <div class="info">
+                    <div class="info-title">Where to find it:</div>
+                    <p>Go to <a href="https://www.twilio.com/console" target="_blank">twilio.com/console</a> → Your credentials are displayed at the top of the page under "Account Info"</p>
+                </div>
+
+                <h4>Step 3: Get a Twilio Phone Number</h4>
+                <div class="step">
+                    <span class="step-number">3</span>
+                    <span class="step-title">Purchase or get a trial phone number</span>
+                </div>
+                <ul>
+                    <li>Go to <a href="https://www.twilio.com/console/phone-numbers/getting-started" target="_blank">Phone Numbers → Get a Trial Number</a></li>
+                    <li>Trial accounts get one free US phone number</li>
+                    <li>Copy this number (e.g., +1234567890)</li>
+                </ul>
+                <div class="warning">
+                    <div class="warning-title">Trial Account Limitations:</div>
+                    <ul>
+                        <li>Can only send SMS to verified phone numbers</li>
+                        <li>Messages include "Sent from your Twilio trial account"</li>
+                        <li>Upgrade to a paid account to remove these limitations</li>
+                    </ul>
+                </div>
+
+                <h4>Step 4: Configure QuickPing</h4>
+                <div class="step">
+                    <span class="step-number">4</span>
+                    <span class="step-title">Enter your credentials in QuickPing</span>
+                </div>
+                <ol>
+                    <li>Open QuickPing app</li>
+                    <li>Go to <strong>Settings</strong> → <strong>SMS Service</strong></li>
+                    <li>Enter your credentials:
+                        <ul>
+                            <li><strong>Account SID</strong>: Your Twilio Account SID</li>
+                            <li><strong>Auth Token</strong>: Your Twilio Auth Token</li>
+                            <li><strong>From Number</strong>: Your Twilio phone number (include country code, e.g., +1234567890)</li>
+                        </ul>
+                    </li>
+                    <li>Tap <strong>Save Configuration</strong></li>
+                </ol>
+
+                <h4>Pricing Reference</h4>
+                <ul>
+                    <li>US SMS: ~$0.0079 per message</li>
+                    <li>Phone number: ~$1/month</li>
+                    <li>Free trial: $15.50 credit included</li>
+                </ul>
+            </div>
+
+            <div id="sendgrid" class="tab-content">
+                <h3>Email Setup with SendGrid</h3>
+                <p>SendGrid is a cloud-based email service that allows you to send emails programmatically. Here's how to set it up:</p>
+
+                <h4>Step 1: Create a SendGrid Account</h4>
+                <div class="step">
+                    <span class="step-number">1</span>
+                    <span class="step-title">Go to <a href="https://signup.sendgrid.com/" target="_blank">signup.sendgrid.com</a></span>
+                </div>
+                <ul>
+                    <li>Enter your email and create a password</li>
+                    <li>Complete the account verification process</li>
+                    <li>SendGrid offers a <strong>free tier: 100 emails/day forever</strong></li>
+                </ul>
+
+                <h4>Step 2: Create an API Key</h4>
+                <div class="step">
+                    <span class="step-number">2</span>
+                    <span class="step-title">Generate your SendGrid API Key</span>
+                </div>
+                <ol>
+                    <li>Go to <a href="https://app.sendgrid.com/settings/api_keys" target="_blank">Settings → API Keys</a></li>
+                    <li>Click <strong>"Create API Key"</strong></li>
+                    <li>Give it a name (e.g., "QuickPing")</li>
+                    <li>Select <strong>"Full Access"</strong> or <strong>"Restricted Access"</strong> with Mail Send permissions</li>
+                    <li>Click <strong>"Create & View"</strong></li>
+                    <li><strong>Copy the API key immediately</strong> - you won't be able to see it again!</li>
+                </ol>
+                <div class="warning">
+                    <div class="warning-title">Important:</div>
+                    <p>The API key is only shown once. Make sure to copy it before closing the window!</p>
+                </div>
+
+                <h4>Step 3: Verify Your Sender Identity</h4>
+                <div class="step">
+                    <span class="step-number">3</span>
+                    <span class="step-title">Set up sender verification</span>
+                </div>
+                <p>SendGrid requires you to verify your sender identity before sending emails:</p>
+                <ul>
+                    <li>Go to <a href="https://app.sendgrid.com/settings/sender_auth" target="_blank">Settings → Sender Authentication</a></li>
+                    <li>Choose <strong>"Verify a Single Sender"</strong> for quick setup</li>
+                    <li>Enter your email address and verify it</li>
+                    <li>Or set up <strong>Domain Authentication</strong> for better deliverability</li>
+                </ul>
+
+                <h4>Step 4: Configure QuickPing</h4>
+                <div class="step">
+                    <span class="step-number">4</span>
+                    <span class="step-title">Enter your credentials in QuickPing</span>
+                </div>
+                <ol>
+                    <li>Open QuickPing app</li>
+                    <li>Go to <strong>Settings</strong> → <strong>Email Service</strong></li>
+                    <li>Enter your credentials:
+                        <ul>
+                            <li><strong>API Key</strong>: Your SendGrid API key</li>
+                            <li><strong>From Email</strong>: Your verified sender email address</li>
+                            <li><strong>From Name</strong>: Display name (e.g., your company name)</li>
+                        </ul>
+                    </li>
+                    <li>Tap <strong>Save Configuration</strong></li>
+                </ol>
+
+                <h4>Pricing Reference</h4>
+                <ul>
+                    <li>Free tier: 100 emails/day forever</li>
+                    <li>Essentials: $19.95/month for 50,000 emails</li>
+                    <li>No credit card required for free tier</li>
+                </ul>
+            </div>
+        </div>
 
         <div class="section">
             <h2>Getting Help</h2>
@@ -77,6 +257,32 @@
                 <div class="faq-question">Is my data backed up?</div>
                 <div class="faq-answer">QuickPing stores your data locally on your device. We recommend using iCloud backup to ensure your data is preserved.</div>
             </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Why are my SMS not being delivered?</div>
+                <div class="faq-answer">
+                    <p>Common reasons for SMS delivery failures:</p>
+                    <ul>
+                        <li>Trial accounts can only send to verified numbers</li>
+                        <li>Phone number format must include country code (e.g., +1 for US)</li>
+                        <li>Insufficient Twilio account balance</li>
+                        <li>Recipient has blocked Twilio numbers</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Why are my emails going to spam?</div>
+                <div class="faq-answer">
+                    <p>To improve email deliverability:</p>
+                    <ul>
+                        <li>Verify your sender email address in SendGrid</li>
+                        <li>Set up domain authentication for better reputation</li>
+                        <li>Avoid spam trigger words in your message content</li>
+                        <li>Ask recipients to add your email to their contacts</li>
+                    </ul>
+                </div>
+            </div>
         </div>
 
         <div class="section">
@@ -88,11 +294,20 @@
                 <li>Make sure you are running the latest version from the App Store</li>
             </ul>
 
-            <h3>Feedback Not Sending</h3>
+            <h3>SMS Not Sending</h3>
             <ul>
-                <li>Check your internet connection</li>
-                <li>Make sure you have filled in all required fields</li>
-                <li>Try again after a few moments</li>
+                <li>Verify your Twilio credentials are correct</li>
+                <li>Check your Twilio account balance</li>
+                <li>Ensure phone number includes country code (+1 for US)</li>
+                <li>For trial accounts, verify the recipient's phone number in Twilio console</li>
+            </ul>
+
+            <h3>Email Not Sending</h3>
+            <ul>
+                <li>Verify your SendGrid API key is correct</li>
+                <li>Make sure your sender email is verified in SendGrid</li>
+                <li>Check SendGrid activity log for delivery status</li>
+                <li>Ensure the recipient email address is valid</li>
             </ul>
 
             <h3>Notifications Not Working</h3>
@@ -108,5 +323,18 @@
             <p><a href="https://asunnyboy861.github.io/QuickPing-pravicy/">Privacy Policy</a> | <a href="https://asunnyboy861.github.io/QuickPing-terms/">Terms of Service</a></p>
         </footer>
     </div>
+
+    <script>
+        function showTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.getElementById(tabId).classList.add('active');
+            event.target.classList.add('active');
+        }
+    </script>
 </body>
 </html>
