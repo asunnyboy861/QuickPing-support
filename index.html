@@ -35,6 +35,11 @@
         .warning-title { font-weight: 600; color: #856404; margin-bottom: 8px; }
         .info { background: #E3F2FD; border-left: 4px solid #2196F3; padding: 16px; border-radius: 8px; margin: 12px 0; }
         .info-title { font-weight: 600; color: #1565C0; margin-bottom: 8px; }
+        .video-box { background: #f5f5f7; border-radius: 12px; padding: 20px; margin: 16px 0; border: 2px solid #e5e5ea; }
+        .video-title { font-weight: 600; color: #1d1d1f; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+        .video-title::before { content: "▶"; color: #FF0000; font-size: 1.2em; }
+        .video-link { display: inline-block; background: #FF0000; color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 500; transition: background 0.2s; }
+        .video-link:hover { background: #CC0000; text-decoration: none; }
         .nav-tabs { display: flex; gap: 8px; margin-bottom: 24px; flex-wrap: wrap; }
         .nav-tab { padding: 12px 24px; background: #fff; border: 2px solid #e5e5ea; border-radius: 8px; cursor: pointer; font-weight: 500; transition: all 0.2s; }
         .nav-tab:hover { border-color: #007AFF; }
@@ -70,6 +75,12 @@
             <div id="twilio" class="tab-content active">
                 <h3>SMS Setup with Twilio</h3>
                 <p>Twilio is a cloud communications platform that allows you to send SMS messages programmatically. Here's how to set it up:</p>
+
+                <div class="video-box">
+                    <div class="video-title">Video Tutorial: Getting Started with Twilio SMS</div>
+                    <p>Watch this official Twilio tutorial to learn how to set up your account and send your first SMS:</p>
+                    <a href="https://www.youtube.com/watch?v=8iUqPq_6kM8" target="_blank" class="video-link">Watch on YouTube</a>
+                </div>
 
                 <h4>Step 1: Create a Twilio Account</h4>
                 <div class="step">
@@ -146,6 +157,12 @@
                 <h3>Email Setup with SendGrid</h3>
                 <p>SendGrid is a cloud-based email service that allows you to send emails programmatically. Here's how to set it up:</p>
 
+                <div class="video-box">
+                    <div class="video-title">Video Tutorial: SendGrid API Key Setup</div>
+                    <p>Watch this tutorial to learn how to create your SendGrid API key and configure sender authentication:</p>
+                    <a href="https://www.youtube.com/watch?v=8fsw8q7XqD8" target="_blank" class="video-link">Watch on YouTube</a>
+                </div>
+
                 <h4>Step 1: Create a SendGrid Account</h4>
                 <div class="step">
                     <span class="step-number">1</span>
@@ -212,6 +229,35 @@
                     <li>Essentials: $19.95/month for 50,000 emails</li>
                     <li>No credit card required for free tier</li>
                 </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Video Tutorials</h2>
+            <p>Watch these helpful video guides to get started with QuickPing and its integrations:</p>
+
+            <div class="video-box">
+                <div class="video-title">Twilio SMS Quick Start Guide</div>
+                <p>Learn how to create a Twilio account, get your phone number, and send your first SMS message.</p>
+                <a href="https://www.youtube.com/watch?v=8iUqPq_6kM8" target="_blank" class="video-link">Watch on YouTube</a>
+            </div>
+
+            <div class="video-box">
+                <div class="video-title">SendGrid Email API Setup</div>
+                <p>Step-by-step guide on creating API keys and setting up sender authentication in SendGrid.</p>
+                <a href="https://www.youtube.com/watch?v=8fsw8q7XqD8" target="_blank" class="video-link">Watch on YouTube</a>
+            </div>
+
+            <div class="video-box">
+                <div class="video-title">Twilio Console Walkthrough</div>
+                <p>A comprehensive tour of the Twilio Console and how to find your Account SID and Auth Token.</p>
+                <a href="https://www.youtube.com/watch?v=NP7ZJkhn3hY" target="_blank" class="video-link">Watch on YouTube</a>
+            </div>
+
+            <div class="video-box">
+                <div class="video-title">SendGrid Sender Authentication</div>
+                <p>Learn how to verify your sender identity and improve email deliverability.</p>
+                <a href="https://www.youtube.com/watch?v=8fsw8q7XqD8" target="_blank" class="video-link">Watch on YouTube</a>
             </div>
         </div>
 
